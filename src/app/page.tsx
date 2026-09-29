@@ -1,69 +1,136 @@
+import NavBar from "@/components/NavBar";
+import { CardButtonType } from "@/types/button-type";
 import Image from "next/image";
+import {
+  MdHtml,
+  MdOutlineImage,
+  MdOutlineSecurity,
+  MdOutlineSearch,
+} from "react-icons/md";
+
+import {
+  FaSitemap,
+  FaRobot,
+  FaCode,
+  FaServer,
+  FaLongArrowAltRight,
+} from "react-icons/fa";
+
+import {
+  TbSeo,
+  TbBrandGoogleAnalytics,
+} from "react-icons/tb";
+import CardButton from "@/components/CardButton";
+import { getColorTheme } from "@/utils/color-shader";
 
 export default function Home() {
+  const cardbtns: CardButtonType[] = [
+  {
+    name: "Semantic HTML",
+    icon: <MdHtml size={40}/>,
+    description:
+      "Learn how semantic tags help search engines understand webpage structure.",
+  },
+  {
+    name: "Non-Semantic HTML",
+    icon: <FaCode size={40}/>,
+    description:
+      "Compare traditional div-based layouts with semantic HTML elements.",
+  },
+  {
+    name: "Metadata",
+    icon: <TbSeo size={40}/>,
+    description:
+      "Explore title tags, meta descriptions, Open Graph tags, and SEO metadata.",
+  },
+  {
+    name: "Image SEO",
+    icon: <MdOutlineImage size={40}/>,
+    description:
+      "Understand alt text, image optimization, accessibility, and discoverability.",
+  },
+  {
+    name: "robots.txt",
+    icon: <FaRobot size={40}/>,
+    description:
+      "Control how search engine crawlers access and scan website content.",
+  },
+  {
+    name: "XML Sitemap",
+    icon: <FaSitemap size={40}/>,
+    description:
+      "Help search engines discover and index important website pages efficiently.",
+  },
+  {
+    name: "Structured Data",
+    icon: <FaCode size={40}/>,
+    description:
+      "Add schema markup to provide richer information to search engines.",
+  },
+  {
+    name: "CSR Rendering",
+    icon: <FaServer size={40}/>,
+    description:
+      "Understand Client-Side Rendering and its impact on SEO performance.",
+  },
+  {
+    name: "SSR & SSG",
+    icon: <MdOutlineSearch size={40}/>,
+    description:
+      "Explore Server-Side Rendering and Static Site Generation in modern frameworks.",
+  },
+  {
+    name: "SEO Analyzer",
+    icon: <TbBrandGoogleAnalytics size={40}/>,
+    description:
+      "Analyze SEO elements such as headings, metadata, images, and page structure.",
+  },
+];
+const colors = [
+  "blue",
+  "green",
+  "purple",
+  "orange",
+  "red",
+  "cyan",
+] as const;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="">
+          <NavBar/>
+
+          <div className="grid grid-cols-5 gap-5 p-3">
+              {
+                cardbtns.map((data,index)=>{
+                  const theme = getColorTheme(colors[index % colors.length]);
+
+                    return (
+                      <div
+                      key={`cb-${index}`}
+                        className={`bg-white  h-fit p-3 rounded-lg`}
+                        style={{
+                          //borderColor: theme.border,
+                          backgroundColor:theme.light
+                        }}
+                      >
+                        <div className="w-fit p-2 h-fit rounded-lg" style={{
+                          color: theme.light,
+                          backgroundColor: theme.dark
+                        }}>
+                          {data.icon}
+                        </div>
+                        <p className="text-lg uppercase font-bold mt-2">{data.name}</p>
+
+                        <p>{data.description}</p>
+
+                        <button className="flex items-center gap-2 mt-2 text-blue-500
+                        hover:scale-105 active:scale-95 cursor-pointer
+                        ">Explore <FaLongArrowAltRight></FaLongArrowAltRight></button>
+                      </div>
+                    );
+                })
+              }
+          </div>
     </div>
   );
 }
